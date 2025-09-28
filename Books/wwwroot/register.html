@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Forma</title>
+    <link rel="stylesheet" href="login.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="overlay"></div>
+
+    <div class="center-div">
+        <form class="form" id="registerForm">
+            <h2 id="tekst"><i class="fa-solid fa-book-open-reader"></i> Registracija</h2>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="ime" placeholder="Ime">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="prezime" placeholder="Prezime">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="korisnickoIme" placeholder="Korisničko ime">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="email" placeholder="Email">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="lozinka" placeholder="Lozinka">
+            </div>
+
+            <button type="submit" id="button">Registruj se</button><br><br>
+            <a id="link" href="login.html">Login</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const ime = document.getElementById('ime').value;
+            const prezime = document.getElementById('prezime').value;
+            const korisnickoIme = document.getElementById('korisnickoIme').value;
+            const email = document.getElementById('email').value;
+            const lozinka = document.getElementById('lozinka').value;
+
+            const requestBody = {
+                Ime: ime,
+                Prezime: prezime,
+                KorisnickoIme: korisnickoIme,
+                Email: email,
+                Lozinka: lozinka
+            };
+
+            try {
+                const response = await fetch('/api/Auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    alert('Registracija uspješna!');
+                    window.location.href = 'login.html';
+                } else {
+                    const err = await response.text();
+                    alert('Greška: ' + err);
+                }
+            } catch (error) {
+                alert('Greška prilikom komunikacije sa serverom.');
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

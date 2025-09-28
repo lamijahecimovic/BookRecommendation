@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Početna | Biblioteka</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <header>
+        <h1>Moja Biblioteka</h1>
+        <nav>
+            <a href="#">Početna</a>
+            <a href="favorites.html">Favoriti</a>
+            <a href="#">Profil</a>
+            <a href="#" onclick="openLogoutModal()">Odjava</a>
+
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2></h2>
+        <p>.</p>
+    </div>
+    <section class="book-section">
+        <h3 style="margin-bottom: 20px;">Preporučene knjige</h3>
+        <div id="recommended-list" class="book-grid"></div>
+    </section>
+
+
+
+
+    <section class="book-section">
+        <h3 style="margin-bottom: 20px;">Sve knjige</h3>
+        <div id="book-list" class="book-grid"></div>
+    </section>
+
+
+
+
+
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Moj profil</h2>
+            <button onclick="closeSidebar()" class="close-btn">&times;</button>
+        </div>
+        <div class="sidebar-content">
+
+
+
+
+
+        </div>
+    </div>
+
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Jeste li sigurni da želite da se odjavite?</p>
+            <button onclick="confirmLogout()" class="btn-yes">Da, odjavi me</button>
+            <button onclick="closeLogoutModal()" class="btn-no">Otkaži</button>
+        </div>
+    </div>
+    <script src="home.js"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

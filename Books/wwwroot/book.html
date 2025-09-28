@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalji knjige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="book.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <header>Detalji knjige</header>
+
+    <div class="container">
+        <div class="book-info">
+            <img id="book-image" src="/images/default-book.jpg" alt="Naslovnica knjige">
+            <div class="details">
+                <h2 id="book-title">Naslov knjige</h2>
+                <p><strong>Autor:</strong> <span id="book-author"></span></p>
+                <p><strong>Opis:</strong> <span id="book-description">Nema opisa.</span></p>
+                <button id="read-button" class="read-btn" style="display: none;">Čitaj knjigu</button>
+            </div>
+        </div>
+
+        <iframe id="pdfIframe"></iframe>
+        <hr style="margin: 40px 0;">
+
+        <h3>Ostavi recenziju</h3>
+        <div id="review-form">
+            <label for="comment">Komentar:</label><br><br />
+            <textarea id="comment" rows="4" cols="60" placeholder="Napiši komentar..."></textarea><br><br>
+
+            <label>Ocjena:</label><br>
+            <div id="star-rating" style="font-size: 24px; cursor: pointer;">
+                <span>&#9734;</span>
+                <span>&#9734;</span>
+                <span>&#9734;</span>
+                <span>&#9734;</span>
+                <span>&#9734;</span>
+            </div>
+
+
+            <button onclick="posaljiRecenziju()" class="read-btn">Pošalji recenziju</button>
+        </div>
+
+        <div id="recenzije" style="margin-top: 40px;">
+            <h3>Recenzije korisnika</h3>
+            <div id="lista-recenzija"></div>
+        </div>
+
+    </div>
+    <script src="book.js"></script>
+
+
+
+
+
+
+</body>
+</html>

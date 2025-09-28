@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Forma</title>
+    <link rel="stylesheet" href="login.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="overlay"></div>
+
+    <div class="center-div">
+        <form class="form">
+            <h2 id="tekst"><i class="fa-solid fa-book-open-reader"></i> Prijava</h2>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username" placeholder="Korisničko ime">
+            </div>
+
+
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password" placeholder="Lozinka">
+            </div>
+
+            <button id="button">Prijavi se</button><br>
+            <br>
+            <a id="link" href="register.html">Nemate račun? Registrujte se</a>
+        </form>
+    </div>
+    <script>
+        document.querySelector('#button').addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const korisnickoIme = document.getElementById('username').value.trim();
+            const lozinka = document.getElementById('password').value.trim();
+
+            if (!korisnickoIme || !lozinka) {
+                alert("Unesite korisničko ime i lozinku.");
+                return;
+            }
+
+            const requestBody = {
+                KorisnickoIme: korisnickoIme,
+                Lozinka: lozinka
+            };
+
+            try {
+                const response = await fetch('/api/Auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    localStorage.setItem('korisnickoIme', document.getElementById('username').value.trim());
+
+                    localStorage.setItem("korisnikId", response.KorisnikId);
+
+                    console.log("Primljeni podaci:", data);
+                    
+                    window.location.href = 'home.html';
+
+
+
+                    
+                } else {
+                    alert("Greška: " + (data.message || "Prijava nije uspjela."));
+                }
+            } catch (error) {
+                console.error("Greška prilikom slanja zahtjeva:", error);
+                alert("Došlo je do greške prilikom prijave.");
+            }
+        });
+    </script>
+
+</body>
+
+
+</html>
